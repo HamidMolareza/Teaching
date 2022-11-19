@@ -42,7 +42,7 @@ public static class Program {
     public static void Solution1(List<Student> students) {
         var targetStudents = new List<Student>();
         foreach (var student in students) {
-            if (student.Age <= 16)
+            if (student.Age < 22)
                 continue;
             targetStudents.Add(student);
         }
@@ -50,10 +50,10 @@ public static class Program {
         targetStudents = targetStudents
             .OrderByDescending(student => student.Average)
             .ToList();
-        
+
         if (targetStudents.Count <= 1)
             return;
-        
+
         targetStudents.RemoveAt(0);
 
         var limit = targetStudents.Count > 2 ? 2 : targetStudents.Count;
@@ -64,7 +64,7 @@ public static class Program {
 
     public static void Solution2(IEnumerable<Student> students) {
         var result = students
-            .Where(student => student.Age > 16)
+            .Where(student => student.Age >= 22)
             .OrderByDescending(student => student.Average)
             .Skip(1)
             .Take(2)
