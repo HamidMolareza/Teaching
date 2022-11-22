@@ -13,13 +13,8 @@ void PrintXorUniqueNumbers(IEnumerable<int> numbers) {
         .Select(group => group.Key)
         .ToList();
 
-    if (uniqueNumbers.Any()) {
-        var xor = uniqueNumbers.Aggregate((number, result) => result ^ number);
-        Console.WriteLine(xor);
-    }
-    else {
-        Console.WriteLine("0");
-    }
+    var xor = uniqueNumbers.Aggregate(0, (result, nextNumber) => nextNumber ^ result);
+    Console.WriteLine(xor);
 }
 
 List<T> GetInputs<T>(char separator) =>
